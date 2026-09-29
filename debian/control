@@ -1,10 +1,12 @@
 Source: dh-yang
 Section: admin
 Priority: optional
-Maintainer: Vyatta Package Maintainers <DL-vyatta-help@att.com>
-Uploaders: Andrew Johnson <ajohnso@brocade.com>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.6
+Maintainer: NuDanOS Maintainers <jon@fernandez.tech>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/nudanos/dh-yang.git
+Vcs-Browser: https://github.com/nudanos/dh-yang
 
 Package: dh-yang
 Architecture: all

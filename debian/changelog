@@ -1,3 +1,10 @@
+dh-yang (0.4) trixie; urgency=medium
+
+  * Port to Debian 13: debhelper-compat 13, Standards-Version 4.7.2,
+    Rules-Requires-Root, NuDanOS Vcs.
+
+ -- NuDanOS Maintainers <jon@fernandez.tech>  Tue, 29 Sep 2026 02:23:53 +0000
+
 dh-yang (0.3) unstable; urgency=medium
 
   * DANOS Import Master
