@@ -9,23 +9,27 @@ dh_yang - Track YANG import dependencies
 use strict;
 use warnings;
 use Debian::Debhelper::Dh_Lib;
+use File::Find;
 
 init();
 
 foreach my $package ( @{ $dh{DOPACKAGES} } ) {
-    my $tmp        = tmpdir($package);
-    my $yang_files = `find $tmp -name *.yang`;
+    my $tmp = tmpdir($package);
+    my @yang_files;
+    find( { wanted => sub { push @yang_files, $_ if -f && /[.]yang\z/x }, no_chdir => 1 }, $tmp )
+      if -d $tmp;
 
     ## TODO - Use proper yang parser for dependencies
     ## Check Yang compiles!?
     my @yang_deps;
-    foreach my $file ( split /\n/, $yang_files ) {
-        my $import_lines = `grep "import " $file`;
-        foreach my $line ( split /\n/, $import_lines ) {
-            if ( $line =~ /^\s+import\s(\S+)\s+{/ ) {
+    foreach my $file (@yang_files) {
+        open my $fh, "<", $file or error("$file: $!");
+        while ( my $line = <$fh> ) {
+            if ( $line =~ /^\s+import\s(\S+)\s+{/x ) {
                 push @yang_deps, "$1-yang";
             }
         }
+        close $fh or error("$file: $!");
     }
 
     addsubstvar( $package, "yang:Depends", join( ", ", @yang_deps ) );
