@@ -1,3 +1,10 @@
+dh-yang (0.5) trixie; urgency=medium
+
+  * Code-quality lint fixes (distro docs/porting.md): analyzer findings
+    fixed, see the git log.
+
+ -- NuDanOS Maintainers <jon@fernandez.tech>  Tue, 20 Oct 2026 11:56:41 +0000
+
 dh-yang (0.4) trixie; urgency=medium
 
   * Port to Debian 13: debhelper-compat 13, Standards-Version 4.7.2,
